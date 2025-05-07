@@ -1,0 +1,13 @@
+@startuml
+Actor "Ops Manager" as A
+
+box "Manage Cloud" #lightblue
+participant "fleet" as S
+A -> S : fleet-events-inc
+participant "Cloud Stack" as CS
+S -> CS : events/inc (name, amount)
+CS -> CS : Events.update(name, amount)
+CS -> CS : sails.helpers.handleEvents()
+end box
+@enduml
+
